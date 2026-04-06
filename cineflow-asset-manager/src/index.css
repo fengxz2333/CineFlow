@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #0a0a0c;
+  --color-card-bg: #141418;
+  --color-sidebar-bg: #0f0f12;
+  --color-accent-purple: #8b5cf6;
+  --color-accent-blue: #3b82f6;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-gray-300 antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+}
+
+.glass-panel {
+  @apply bg-card-bg border border-white/5 shadow-xl;
+}
+
+.active-gradient {
+  @apply bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-blue-500/30;
+}

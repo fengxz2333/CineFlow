@@ -1,0 +1,13 @@
+node_modules/
+dist/assets/
+out/
+*.asar
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local
+.env.*.local
+coverage/
+.npm
+.cache

@@ -1,0 +1,5 @@
+{
+  "name": "CineFlow Asset Manager",
+  "description": "A lightweight, AI-powered asset management tool for CG directors, featuring shot tracking, version control, and frame-accurate annotations.",
+  "requestFramePermissions": []
+}
