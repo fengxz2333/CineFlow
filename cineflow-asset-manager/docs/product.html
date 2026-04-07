@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 2.2cm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+    max-width: 760px; margin: 0 auto; padding: 36px 44px;
+    color: #2c2c2c; line-height: 1.9; font-size: 15px;
+    background: #fff;
+  }
+  h1 { font-size: 26px; color: #1a1a1a; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; margin-top: 40px; letter-spacing: 0.5px; }
+  h1:first-of-type { text-align: center; border-bottom: none; margin-bottom: 2px; }
+  h2 { font-size: 18px; color: #1e40af; margin-top: 28px; padding-left: 10px; border-left: 3px solid #3b82f6; font-weight: 600; }
+  p { margin: 10px 0; text-align: justify; text-indent: 2em; }
+  p.no-indent { text-indent: 0; }
+  .subtitle { text-align: center; color: #666; font-size: 16px; margin-bottom: 4px; text-indent: 0; }
+  .meta { text-align: center; #999; font-size: 13px; margin-bottom: 32px; text-indent: 0; }
+  ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 5px 0; line-height: 1.75; }
+  .pro-box {
+    background: #f0f6ff; border-left: 3px solid #3b82f6;
+    border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 12px 0;
+  }
+  .con-box {
+    background: #fffbeb; border-left: 3px solid #d97706;
+    border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 12px 0;
+  }
+  .box-title { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+  .pro-box .box-title { color: #1d4ed8; }
+  .con-box .box-title { color: #b45309; }
+  .box-content { font-size: 13.5px; line-height: 1.75; color: #333; white-space: pre-line; }
+  .divider { height: 1px; background: #e5e7eb; margin: 24px 0; border: none; }
+  .footer { text-align: center; color: #888; margin-top: 40px; font-size: 14px; text-indent: 0; }
+  .highlight { background: linear-gradient(transparent 60%, #bfdbfe 60%); padding: 0 2px; }
+
+  /* 截图样式 */
+  .screenshot {
+    max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    margin: 14px 0; display: block;
+  }
+  .screenshot-row {
+    display: flex; gap: 12px; margin: 14px 0; flex-wrap: wrap; justify-content: center;
+  }
+  .screenshot-row img {
+    flex: 1; min-width: 200px; max-width: 48%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); object-fit: contain;
+  }
+  .fig-caption {
+    text-align: center; color: #888; font-size: 12.5px; margin-top: -8px; margin-bottom: 12px;
+    text-indent: 0;
+  }
+</style>
+</head>
+<body>
+
+<h1 style="font-size:36px;color:#111;border:none;margin-bottom:2px;">CineFlow Production</h1>
+<p class="subtitle">桌面端影视资产管理工具 · 面向个人创作者</p>
+<p class="meta">v0.4.6 · 2026年4月</p>
+<hr class="divider">
+
+<!-- 一、为什么做这件事 -->
+<h1>一、起点：一个创作者的真实困境</h1>
+
+<p>做过两三个并行项目之后，你会发现一个尴尬的事实：<strong>最难管的不是创作本身，而是文件。</strong></p>
+
+<p>素材散落在各个角落——D盘的"参考"文件夹、微信传输助手、浏览器收藏夹、移动硬盘里的某个子目录。找一张三个月前存的角色参考图，翻来覆去要十五分钟。更离谱的是，有时候找文件靠的是翻企微聊天记录——"那个文件你发过我的，我搜一下聊天记录"——一个创作者的时间就这样耗在了找文件上。项目一多更混乱：这个镜头做到哪一步了？上一版分镜改了什么？合成阶段的最新版到底在不在？</p>
+
+<div class="con-box">
+  <div class="box-title">现有工具解决不了这个问题</div>
+  <div class="box-content">ShotGrid、ftrack、CG-Workflow 这些制片管理平台确实强大，但它们面向的是几十人的工作室流程。对一个人或三五个人的小团队来说，这些系统的配置成本、学习门槛和价格都不现实。
+
+而另一端，大部分人最终退回到"文件夹 + Excel 表格 + 命名规范"的手工作坊模式——能跑，但每次都在重复低效劳动。</div>
+</div>
+
+<p>中间这块空白，就是 CineFlow 想填的位置。<span class="highlight">一个不需要服务器配置、不需要团队培训、打开就能用的个人创作资产管理工具。</span></p>
+
+<img class="screenshot" src="../Cineflow_260406_00.4.6.00.56/1.png" alt="项目选择首页" />
+<p class="fig-caption">图 1 — 首页：新建项目 / 选择已有项目，或拖入文件自动分镜</p>
+
+<hr class="divider">
+
+<!-- 二、核心功能 -->
+<h1>二、它做了什么</h1>
+
+<h2>2.1 视频导入即拆分</h2>
+<p class="no-indent">把一段视频拖进 CineFlow，系统自动检测场景切换点，把视频按镜头切分开。确认后直接创建一个新项目，每个切出来的片段自动落入对应镜头的分镜阶段。从拿到原片到看到完整的镜头列表，中间没有手动打点、导出、建文件夹这些步骤。</p>
+
+<img class="screenshot" src="../Cineflow_260406_00.4.6.00.56/2.png" alt="检测进度" />
+<p class="fig-caption">图 2 — 智能场景检测进行中，逐帧分析画面变化</p>
+
+<div class="screenshot-row">
+  <img src="../Cineflow_260406_00.4.6.00.56/3.png" alt="检测结果时间轴" />
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-17-06.png" alt="剪辑点标记" />
+</div>
+<p class="fig-caption">图 3—4 — 检测完成后的时间轴视图，可拖拽调整剪辑点</p>
+
+<div class="pro-box">
+  <div class="box-title">实际效果</div>
+  <div class="box-content">一段10分钟的参考片 → 自动识别出17个剪辑点 → 用户微调后确认 → 新项目创建完成，17个镜头各自携带对应的视频片段，缩略图已就位。整个过程不到两分钟。</div>
+</div>
+
+<img class="screenshot" src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-17-21.png" alt="确认生成镜头" />
+<p class="fig-caption">图 5 — 输入新项目名称后确认，自动创建项目并切分视频</p>
+
+<h2>2.2 项目看板</h2>
+<p>每个项目的界面分为四个区域：</p>
+<ul>
+  <li><strong>左侧镜头列</strong>——所有镜头以卡片形式排列，带编号、缩略图和状态色标（完成/进行中/待审/未开始）</li>
+  <li><strong>中上部阶段导航</strong>——9个制作阶段（创意→分镜→预演→资产→动画→特效→灯光→合成），每个阶段独立统计进度</li>
+  <li><strong>顶部仪表盘</strong>——整体完成度环形图、各状态分布、阻塞提醒</li>
+  <li><strong>右侧版本区</strong>——选中某个镜头的某个阶段后，显示该组合下的所有版本文件（v001、v002…），支持播放预览</li>
+</ul>
+<p class="no-indent">打开一个项目，当前进度一目了然。不用去猜哪个镜头卡住了，不用翻聊天记录确认"最新版是第几版"。</p>
+
+<div class="screenshot-row">
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-17-54.png" alt="项目看板全貌" />
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-18-48.png" alt="仪表盘与阶段导航" />
+</div>
+<p class="fig-caption">图 6—7 — 项目看板：9阶段导航 + AI健康度仪表盘 + 右侧版本文件列表</p>
+
+<img class="screenshot" src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-18-06.png" alt="镜头视频播放器" />
+<p class="fig-caption">图 8 — 选中镜头后的视频播放预览（含版本切换）</p>
+
+<h2>2.3 创意文件库</h2>
+<p>CineFlow 内置了一个全局素材库，按六大类组织：图片参考、视频参考、音乐参考、音效、资产库、串片索引。支持单个文件拖入、ZIP批量解压导入，文件进来之后自动分类归档。跨项目也能引用——A项目存的参考图，B项目可以直接调用。</p>
+<p class="no-indent">核心思路很简单：<strong>文件只存一次，需要时自己找得到。</strong></p>
+
+<div class="screenshot-row">
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-21-23.png" alt="创意面板六大分类" />
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-21-59.png" alt="视频参考网格浏览" />
+</div>
+<p class="fig-caption">图 9—10 — 创意面板：六大素材分类入口 / 视频参考库网格浏览（已收录127条）</p>
+
+<h2>2.4 串片与对比</h2>
+<p>各镜头的版本准备好之后，可以在内置串片中按顺序播放，调整排序和出入点，快速拼出一个导演审阅版或客户汇报版。</p>
+<p class="no-indent">同一镜头的不同版本之间支持分屏同步对比、叠加差异查看、画中画参照。迭代过程中"这版改了什么"不再靠肉眼反复切换来辨认。</p>
+
+<div class="screenshot-row">
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-22-51.png" alt="压缩包解压预览" />
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-24-55.png" alt="刀盾AI对话" />
+</div>
+<p class="fig-caption">图 11—12 — 压缩包自动解压预览（可分配到指定镜头/阶段） / 刀盾AI对话式操作</p>
+
+<div class="screenshot-row">
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-34-47.png" alt="版本对比分屏" />
+  <img src="../Cineflow_260406_00.4.6.00.56/Snipaste_2026-04-06_12-35-06.png" alt="选择导入来源" />
+</div>
+<p class="fig-caption">图 13—14 — 版本对比播放器（左右分屏同步） / 选择导入来源（推荐阶段/全部阶段）</p>
+
+<hr class="divider">
+
+<!-- 三、现状 -->
+<h1>三、现在的状态</h1>
+
+<p>CineFlow 目前是 <strong>v0.4.x 的半成品</strong>。上面描述的功能已经可以实际使用，但距离完整产品还有明显差距。以下是客观情况：</p>
+
+<div class="con-box">
+  <div class="box-title">已知限制</div>
+  <div class="box-content">
+• 视频切分基于浏览器端的 MediaRecorder 实现，超过30分钟的长视频处理较慢（预计3-8分钟）
+
+• 数据存储在本机 IndexedDB，暂不支持云同步和多设备协同
+
+• 切分输出为 WebM 格式，如需 MP4 用于其他软件需额外转换
+
+• 团队协作功能尚未开发，目前仅支持单用户
+  </div>
+</div>
+
+<div class="pro-box">
+  <div class="box-title">已经在做的事</div>
+  <div class="box-content">
+• 探索 WebCodec API 和 WASM-FFmpeg 方案提升切分性能
+
+• 云端存储方案在规划中
+
+• 批量操作、快捷键覆盖、EDL/XML 导出等功能排期中
+  </div>
+</div>
+
+<p>我们在半成品阶段就把这个东西拿出来，是因为核心链路已经跑通了——从导入到切分到看板到版本管理这条主线。与其闭门打磨到"完美"，不如让实际使用中的问题来决定下一步优先做什么。</p>
+
+<hr class="divider">
+
+<!-- 四、适用场景 -->
+<h1>四、适合谁用</h1>
+<ul>
+  <li><strong>独立动画师</strong>——从参考收集到最终合成的全流程资产在一个地方管起来</li>
+  <li><strong>自由剪辑师 / 短视频创作者</strong>——替代"文件夹+Excel"的管理方式</li>
+  <li><strong>学生设计团队</strong>——毕设或课程作业的项目管理和版本追踪</li>
+  <li><strong>小型工作室（1-5人）</strong>——正式上 ShotGrid 之前的轻量方案</li>
+</ul>
+<hr class="divider">
+
+<!-- 五、彩蛋 -->
+<h1>五、最后说句人话</h1>
+
+<p class="no-indent" style="text-indent:0;">如果你觉得手动导入文件还是太麻烦，可以交给 CineFlow 内置的"刀盾"——它支持拖入压缩包自动解压识别、批量分类导入。后续版本还会开放大模型 API 接入，你可以用自然语言跟素材库对话："帮我找出所有暖色调的参考图"、"把这套角色设定分配到项目B的资产阶段"。比比拉布。</p>
+
+<hr class="divider">
+
+<p class="footer">CineFlow Production — 先解决自己的问题，再看能不能帮到别人</p>
+
+</body>
+</html>
